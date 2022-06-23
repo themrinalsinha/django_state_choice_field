@@ -27,4 +27,4 @@ test_upload: ## uploads package to test server
 pypi_upload: ## uploads package to pypi
 	@$(MAKE) dist
 	@pip install twine -U
-	@twine upload --repository https://upload.pypi.org/legacy/ dist/*
+	@twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
