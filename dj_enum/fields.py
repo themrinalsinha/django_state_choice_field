@@ -1,3 +1,5 @@
+from typing import cast
+from enum import Enum
 from django.db import models
 from .exceptions import InvalidEnumValue
 from .utils import validate_state_change
@@ -5,6 +7,7 @@ from .utils import validate_state_change
 
 class ActionEnum(models.TextChoices):
     __states__ = {}
+    __default__ = None
 
     @classmethod
     def is_valid_transition(cls, from_state, to_state):
@@ -28,6 +31,21 @@ class ActionEnum(models.TextChoices):
             to_state = to_state.value
 
         return cls.__states__.get(to_state, [])
+
+    @classmethod
+    def default(cls):
+        if cls.__default__:
+            return cast(ActionEnum, cls(cls.__default__))
+        return None
+
+    @classmethod
+    def field(cls, **kwargs):
+        return ChoiceField(cls, **kwargs)
+
+    def deconstruct(self):
+        _class = self.__class__
+        path = "{}.{}".format(_class.__module__, _class.__name__)
+        return path, [self.value], {}
 
 
 class ChoiceField(models.CharField):
@@ -74,11 +92,24 @@ class ChoiceField(models.CharField):
         if not sender._meta.abstract:
             setattr(sender, att_name, property(get_value, set_value, del_value))
 
+    def from_db_value(self, value, *_):
+        return self.action_enum.get(value) if value is not None else value
+
+    def get_prep_value(self, value):
+        _value = super().get_prep_value(value)
+        if not _value:
+            return None
+
+        if isinstance(value, Enum):
+            return value.value
+
+        return value
+
 
     def contribute_to_class(
         self, cls, name, private_only=False, virtual_only=models.NOT_PROVIDED
     ):
-        super().contribute_to_class(cls, name, private_only)
+        super().contribute_to_class(cls, name)
         models.signals.class_prepared.connect(self._checks, sender=cls)
 
     def validate(self, value, model_instance):
