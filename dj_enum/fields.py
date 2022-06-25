@@ -21,7 +21,7 @@ class ActionEnum(models.TextChoices):
         return (
             from_state == to_state
             or not cls.__states__
-            or not (from_state in cls.transition_origins(to_state))
+            or (from_state in cls.transition_origins(to_state))
         )
 
     @classmethod
@@ -114,6 +114,7 @@ class ChoiceField(models.CharField):
 
     def deconstruct(self):
         name, path, args, kwargs = super().deconstruct()
+        kwargs["action_enum"] = self.action_enum
 
         if "default" in kwargs and isinstance(kwargs["default"], self.action_enum):
             kwargs["default"] = kwargs["default"].value
