@@ -42,11 +42,19 @@ class ActionEnum(models.TextChoices):
     def field(cls, **kwargs):
         return ChoiceField(cls, **kwargs)
 
-    def deconstruct(self):
-        _class = self.__class__
-        path = "{}.{}".format(_class.__module__, _class.__name__)
-        return path, [self.value], {}
+    @classmethod
+    def get(cls, value, default=None):
+        if isinstance(value, (cls, Enum)):
+            return value
 
+        if isinstance(value, str):
+
+            try:
+                return cls[value]
+            except KeyError:
+                ...
+
+        return default
 
 class ChoiceField(models.CharField):
     def __init__(self, action_enum, *args, **kwargs):
@@ -91,20 +99,6 @@ class ChoiceField(models.CharField):
 
         if not sender._meta.abstract:
             setattr(sender, att_name, property(get_value, set_value, del_value))
-
-    def from_db_value(self, value, *_):
-        return self.action_enum.get(value) if value is not None else value
-
-    def get_prep_value(self, value):
-        _value = super().get_prep_value(value)
-        if not _value:
-            return None
-
-        if isinstance(value, Enum):
-            return value.value
-
-        return value
-
 
     def contribute_to_class(
         self, cls, name, private_only=False, virtual_only=models.NOT_PROVIDED
