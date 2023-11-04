@@ -16,3 +16,5 @@ INSTALLED_APPS = [
     "dj_enum",
     "dj_enum.tests",
 ]
+
+USE_TZ = False
