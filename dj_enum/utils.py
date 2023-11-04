@@ -1,4 +1,4 @@
-from .exceptions import InvalidStateChangeError, InvalidEnumValue
+from .exceptions import InvalidStateEnumError, InvalidTransitionError
 
 
 def _valid_choices(enum, to_value):
@@ -8,14 +8,15 @@ def _valid_choices(enum, to_value):
     try:
         enum(to_value)
     except ValueError:
-        raise InvalidEnumValue(
+        raise InvalidStateEnumError(
             f"{to_value} is not one of the available choices for {enum.__name__}"
         )
+
 
 def validate_state_change(enum, from_state, to_state):
     _valid_choices(enum, to_state)
 
     if not enum.is_valid_transition(from_state, to_state):
-        raise InvalidStateChangeError(
+        raise InvalidTransitionError(
             f"{from_state} -> {to_state} is not a valid transition for {enum.__name__}"
         )

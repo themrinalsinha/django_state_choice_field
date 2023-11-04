@@ -1,6 +1,6 @@
-from .fields import ActionEnum, ChoiceField
+from .fields import StateChoiceField, StateEnum
 
 __all__ = [
-    "ActionEnum",
-    "ChoiceField",
+    "StateEnum",
+    "StateChoiceField",
 ]

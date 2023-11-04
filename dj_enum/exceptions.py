@@ -1,8 +1,13 @@
 from django.core.exceptions import ValidationError
 
 
-class InvalidEnumValue(ValidationError):
-    pass
+class InvalidStateEnumError(ValidationError):
+    """
+    Raised when a state enum is not properly configured.
+    """
 
-class InvalidStateChangeError(ValidationError):
-    pass
+
+class InvalidTransitionError(ValidationError):
+    """
+    Raised when a transition is not valid.
+    """

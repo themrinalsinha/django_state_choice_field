@@ -1,16 +1,16 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
 setup(
-    name = "dj_enum",
+    name="dj_enum",
     keywords="dj_enum",
-    version = "0.0.2",
-    author = "Mrinal Sinha",
-    author_email = "me@mrinal.xyz",
-    python_requires = ">=3.6, <4",
-    classifiers = [
+    version="0.0.2",
+    author="Mrinal Sinha",
+    author_email="me@mrinal.xyz",
+    python_requires=">=3.6, <4",
+    classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",
         "Intended Audience :: Developers",
@@ -19,14 +19,12 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],
-    description = "A Django enum field",
-    long_description = readme,
-    long_description_content_type = "text/markdown",
-    packages = find_packages(include=["dj_enum", "dj_enum.*"]),
-    url = "https://github.com/themrinalsinha/dj_enum",
-    include_package_data = True,
-    zip_safe = False,
-    install_requires = [
-        "Django>=3.2"
-    ]
+    description="A Django enum field",
+    long_description=readme,
+    long_description_content_type="text/markdown",
+    packages=find_packages(include=["dj_enum", "dj_enum.*"]),
+    url="https://github.com/themrinalsinha/dj_enum",
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=["Django>=3.2"],
 )
