@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from dj_enum.exceptions import InvalidStateEnumError
+from dj_enum.exceptions import InvalidStateEnumError, InvalidTransitionError
 
 from .models import Orders, PaymentStatus
 
@@ -16,6 +16,18 @@ class DJEnumStateChoiceFieldTest(TestCase):
         )
         self.assertEqual(order.status, PaymentStatus.COMPLETED)
 
+    def test_valid_value_as_string(self):
+        order = Orders.objects.create(product_name="Test Product", status="completed")
+        self.assertEqual(order.status, PaymentStatus.COMPLETED)
+
     def test_invalid_value(self):
         with self.assertRaises(InvalidStateEnumError):
             Orders.objects.create(product_name="Test Product", status="invalid")
+
+    def test_invalid_state_change(self):
+        order = Orders.objects.create(
+            product_name="Test Product", status=PaymentStatus.COMPLETED
+        )
+        with self.assertRaises(InvalidTransitionError):
+            order.status = PaymentStatus.NOT_STARTED
+            order.save()
