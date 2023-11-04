@@ -1,5 +1,5 @@
 
-name: Pre-commit and pytest
+name: Checks & Tests
 
 on: [push, pull_request]
 
