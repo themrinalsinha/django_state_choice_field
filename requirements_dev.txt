@@ -3,5 +3,6 @@ bumpver
 django
 djangorestframework
 pre-commit
+pytest-django
 pytest
 setuptools
