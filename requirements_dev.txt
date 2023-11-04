@@ -1,3 +1,7 @@
-setuptools
-bumpver
 build
+bumpver
+django
+djangorestframework
+pre-commit
+pytest
+setuptools
