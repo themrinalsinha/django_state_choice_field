@@ -18,6 +18,8 @@ Consider a scenario where we have a model called `Order` that includes the stora
 
 It also defines the state transitions that are allowed for each state. For example, a payment status of `IN_PROGRESS` can only be changed to `FAILED` or `COMPLETED`. This is done by defining the `__states__` attribute in the `PaymentStatus` class which extends `StateEnum`.
 ```python
+from dj_enum import StateChoiceField, StateEnum
+
 class PaymentStatus(StateEnum):
     NOT_STARTED = "not_started", "Not Started"
     IN_PROGRESS = "in_progress", "In Progress"
@@ -37,6 +39,8 @@ class PaymentStatus(StateEnum):
 ```
 Model `Order` can be defined as follows. The `payment_status` field is defined as a `StateChoiceField` with the `PaymentStatus` enum class.
 ```python
+from django.db import models
+
 class Orders(models.Model):
     product_name = models.CharField(max_length=100)
     payment_status = StateChoiceField(
