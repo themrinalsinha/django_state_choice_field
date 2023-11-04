@@ -1,4 +1,6 @@
 # dj_enum
+[![Checks & Tests](https://github.com/themrinalsinha/dj_enum/actions/workflows/checks_and_tests.yaml/badge.svg)](https://github.com/themrinalsinha/dj_enum/actions/workflows/checks_and_tests.yaml)
+
 It includes a `StateChoiceField` that comes with reusable `TextChoices` and validation for state changes. This feature enhances flexibility and data integrity.
 
 ## Requirements
