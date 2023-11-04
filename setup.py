@@ -6,7 +6,7 @@ with open("README.md") as readme_file:
 setup(
     name="dj_enum",
     keywords="dj_enum",
-    version="0.0.2",
+    version="0.0.3",
     author="Mrinal Sinha",
     author_email="me@mrinal.xyz",
     python_requires=">=3.6, <4",
