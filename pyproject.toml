@@ -3,16 +3,16 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.bumpver]
-current_version = "0.0.2"
+current_version = "0.0.3"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
 tag = true
-push  = false
+push = false
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"']
-"setup.py" = ['version = "{version}"']
+"setup.py" = ['version="{version}"']
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "dj_enum.tests.test_settings"
