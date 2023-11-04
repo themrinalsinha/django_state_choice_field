@@ -13,3 +13,6 @@ push  = false
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"']
 "setup.py" = ['version = "{version}"']
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "dj_enum.tests.test_settings"
