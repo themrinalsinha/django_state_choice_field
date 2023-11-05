@@ -1,11 +1,14 @@
 from django.test import TestCase
 
-from dj_enum.exceptions import InvalidStateEnumError, InvalidTransitionError
+from django_state_choice_field.exceptions import (
+    InvalidStateEnumError,
+    InvalidTransitionError,
+)
 
 from .models import Orders, PaymentStatus
 
 
-class DJEnumStateChoiceFieldTest(TestCase):
+class StateChoiceFieldTest(TestCase):
     def test_default_value(self):
         order = Orders.objects.create(product_name="Test Product")
         self.assertEqual(order.status, PaymentStatus.NOT_STARTED)

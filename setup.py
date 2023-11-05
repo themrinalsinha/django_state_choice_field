@@ -4,8 +4,8 @@ with open("README.md") as readme_file:
     readme = readme_file.read()
 
 setup(
-    name="dj_enum",
-    keywords="dj_enum",
+    name="django_state_choice_field",
+    keywords="django_state_choice_field",
     version="0.0.3",
     author="Mrinal Sinha",
     author_email="me@mrinal.xyz",
@@ -22,8 +22,10 @@ setup(
     description="A Django enum field",
     long_description=readme,
     long_description_content_type="text/markdown",
-    packages=find_packages(include=["dj_enum", "dj_enum.*"]),
-    url="https://github.com/themrinalsinha/dj_enum",
+    packages=find_packages(
+        include=["django_state_choice_field", "django_state_choice_field.*"]
+    ),
+    url="https://github.com/themrinalsinha/django_state_choice_field",
     include_package_data=True,
     zip_safe=False,
     install_requires=["Django>=3.2"],
