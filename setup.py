@@ -6,7 +6,7 @@ with open("README.md") as readme_file:
 setup(
     name="django_state_choice_field",
     keywords="django_state_choice_field",
-    version="0.0.3",
+    version="0.0.1",
     author="Mrinal Sinha",
     author_email="me@mrinal.xyz",
     python_requires=">=3.6, <4",
