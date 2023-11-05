@@ -7,7 +7,7 @@ dist: ## builds source and wheel package
 
 .PHONY: clean
 clean: ## removes build files
-	@rm -rf dist/ dj_enum.egg-info/ .eggs/ build/
+	@rm -rf dist/ django_state_choice_field.egg-info/ .eggs/ build/
 
 .PHONY: install
 install: ## installs package
@@ -15,7 +15,7 @@ install: ## installs package
 	@$(MAKE) clean
 
 uninstall:
-	@python -m pip uninstall dj_enum -y
+	@python -m pip uninstall django_state_choice_field -y
 
 .PHONY: test_upload
 test_upload: ## uploads package to test server

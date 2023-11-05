@@ -15,4 +15,4 @@ push = false
 "setup.py" = ['version="{version}"']
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "dj_enum.tests.test_settings"
+DJANGO_SETTINGS_MODULE = "django_state_choice_field.tests.test_settings"

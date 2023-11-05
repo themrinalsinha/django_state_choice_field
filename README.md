@@ -1,5 +1,5 @@
-# dj_enum
-[![Checks & Tests](https://github.com/themrinalsinha/dj_enum/actions/workflows/checks_and_tests.yaml/badge.svg)](https://github.com/themrinalsinha/dj_enum/actions/workflows/checks_and_tests.yaml)
+# django_state_choice_field
+[![Checks & Tests](https://github.com/themrinalsinha/django_state_choice_field/actions/workflows/checks_and_tests.yaml/badge.svg)](https://github.com/themrinalsinha/django_state_choice_field/actions/workflows/checks_and_tests.yaml)
 
 It includes a `StateChoiceField` that comes with reusable `TextChoices` and validation for state changes. This feature enhances flexibility and data integrity.
 
@@ -8,9 +8,9 @@ It includes a `StateChoiceField` that comes with reusable `TextChoices` and vali
 - Django 2.2+
 
 ## Installation
-To set up `dj_enum`, you can easily install it with pip.
+To set up `django_state_choice_field`, you can easily install it with pip.
 ```shell
-$ pip install dj_enum
+$ pip install django_state_choice_field
 ```
 
 ## Example
@@ -18,7 +18,7 @@ Consider a scenario where we have a model called `Order` that includes the stora
 
 It also defines the state transitions that are allowed for each state. For example, a payment status of `IN_PROGRESS` can only be changed to `FAILED` or `COMPLETED`. This is done by defining the `__states__` attribute in the `PaymentStatus` class which extends `StateEnum`.
 ```python
-from dj_enum import StateChoiceField, StateEnum
+from django_state_choice_field import StateChoiceField, StateEnum
 
 class PaymentStatus(StateEnum):
     NOT_STARTED = "not_started", "Not Started"
@@ -65,5 +65,5 @@ class Orders(models.Model):
 # Now, if we try to change the payment status to CANCELLED, it will raise a InvalidTransitionError error.
 >>> order.payment_status = PaymentStatus.CANCELLED
 
-dj_enum.exceptions.InvalidTransitionError: [in_progress -> cancelled is not a valid transition for PaymentStatus']
+django_state_choice_field.exceptions.InvalidTransitionError: [in_progress -> cancelled is not a valid transition for PaymentStatus']
 ```

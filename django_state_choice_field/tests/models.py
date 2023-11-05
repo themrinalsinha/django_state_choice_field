@@ -1,6 +1,6 @@
 from django.db import models
 
-from dj_enum import StateChoiceField, StateEnum
+from django_state_choice_field import StateChoiceField, StateEnum
 
 
 class PaymentStatus(StateEnum):

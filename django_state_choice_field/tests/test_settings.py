@@ -13,8 +13,8 @@ DATABASES = {
 }
 
 INSTALLED_APPS = [
-    "dj_enum",
-    "dj_enum.tests",
+    "django_state_choice_field",
+    "django_state_choice_field.tests",
 ]
 
 USE_TZ = False
